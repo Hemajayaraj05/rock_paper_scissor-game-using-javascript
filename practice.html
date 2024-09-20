@@ -8,27 +8,27 @@
    
 </head>
 <body>
-        <div class="round">
-            <input type="number" placeholder="enter how many rounds you wanr to play">
+        <div class="container1">
+            <input type="number" id="round" placeholder="enter how many rounds you wanr to play">
         </div>
 
 
         <div class="container">
             
             <div class="card" onclick="handleme('rock')">
-                <img src="react.png">
+                <img src="Common Beach Stone Identification (Including Dolomite, Quartz, Serpentine, Syenite, and More).jpg">
             </div>
             <div class="card" onclick="handleme('paper')">
-                <img src="react.png">
+                <img src="29 Step-by-Step Paper Envelope Tutorials - Crafty Blog Stalker.jpg">
             </div>
             <div class="card" onclick="handleme('scissor')">
-                <img src="react.png">
+                <img src="12 Design-Worthy Scissors - Remodelista.jpg">
             </div>
         </div>
 
-
-        <button onclick="WishtoContinue()">Wishing to Continue?Click Yes else No</button>
         <p id="result"></p>
+        <button onclick="WishtoContinue()">Wishing to Continue?Click Yes else No</button>
+       
 
     </body>
 
@@ -36,9 +36,18 @@
       let computerScore=0;
       let myScore=0;
       let roundsPlayed=0;
-      let rounds=document.("round").value;
-        function handleme(input)
+      let rounds;
+      function handleme(input)
+      {
+        if(roundsPlayed===0)
         {
+                rounds=parseInt(document.getElementById("round").value);
+                if(isNaN(rounds) || rounds<=0)
+                {
+                    document.getElementById("result").innerHTML="Please Enter valid number";
+                    return ;
+                }
+        }
             const array=["rock","paper","scissor"];
             const randonNumber=Math.floor(Math.random()*3);
             const computer=array[randonNumber];
@@ -50,11 +59,11 @@
             else if((input==="rock" && computer==="paper") ||(input==="paper" && computer==="scissor")||(input==="rock" && computer==="scissor"))
             {
                 computerScore++;
-                document.getElementById("result").innerHTML=`Hurray!You win :)`; 
+                document.getElementById("result").innerHTML=`Omg!You lost`; 
             }
             else {
                 myScore++;
-                document.getElementById("result").innerHTML=`Omg!You lost`;
+                document.getElementById("result").innerHTML=`Hurray!You win :)`;
             }
             roundsPlayed++;
             checkrounds(roundsPlayed);
@@ -64,7 +73,7 @@
 
 
     function checkrounds(roundsPlayed){
-        if(rounds>=roundsPlayed)
+        if(rounds===roundsPlayed)
     {
         if(computerScore>myScore)
         {
@@ -77,6 +86,9 @@
             document.getElementById("result").innerHTML=`Match ended in draw :|rock  Computer score is ${computerScore} and your score is ${myScore}`;
         }
     }
+    else if(rounds<roundsPlayed){
+        WishtoContinue();
+    }
      
     } 
 
@@ -87,7 +99,7 @@
         const asking=(confirm("Do you want to continue?"));
         if(!asking)
     {
-        document.getElementById("result").innerHTML= `Computer score is ${computerScore} and your score is ${myScore}`
+        document.getElementById("result").innerHTML= `Computer score is ${computerScore} and your score is ${myScore}`;
     }
     
     }

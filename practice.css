@@ -9,8 +9,16 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
   
+}
+input{
+    padding:20px;
+    border-radius: 8px;
 }
 .container{
     height:200px;
@@ -25,13 +33,20 @@ body{
     align-items: center;
 }
 .card{
-    padding:20px;
+   
     border:2px solid black; 
     display: flex;
     
    
 }
+p{
+    color:aliceblue;
+}
 .card img{
-    height:20px;
-    width:30px;
+    height:80px;
+    width:80px;
+}
+button{
+    padding: 20px;
+    border-radius: 8px;
 }
