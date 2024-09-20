@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="practice.css">
+   
+</head>
+<body>
+        <div class="round">
+            <input type="number" placeholder="enter how many rounds you wanr to play">
+        </div>
+
+
+        <div class="container">
+            
+            <div class="card" onclick="handleme('rock')">
+                <img src="react.png">
+            </div>
+            <div class="card" onclick="handleme('paper')">
+                <img src="react.png">
+            </div>
+            <div class="card" onclick="handleme('scissor')">
+                <img src="react.png">
+            </div>
+        </div>
+
+
+        <button onclick="WishtoContinue()">Wishing to Continue?Click Yes else No</button>
+        <p id="result"></p>
+
+    </body>
+
+ <script>
+      let computerScore=0;
+      let myScore=0;
+      let roundsPlayed=0;
+      let rounds=document.("round").value;
+        function handleme(input)
+        {
+            const array=["rock","paper","scissor"];
+            const randonNumber=Math.floor(Math.random()*3);
+            const computer=array[randonNumber];
+            console.log(computer);
+            if((input==="rock" && computer==="rock"  )||(input==="paper" && computer==="paper")||(input==="scissor" && computer==="scissor" ))
+            {
+                document.getElementById("result").innerHTML=`Match ended in draw`;
+            }
+            else if((input==="rock" && computer==="paper") ||(input==="paper" && computer==="scissor")||(input==="rock" && computer==="scissor"))
+            {
+                computerScore++;
+                document.getElementById("result").innerHTML=`Hurray!You win :)`; 
+            }
+            else {
+                myScore++;
+                document.getElementById("result").innerHTML=`Omg!You lost`;
+            }
+            roundsPlayed++;
+            checkrounds(roundsPlayed);
+        }
+        
+
+
+
+    function checkrounds(roundsPlayed){
+        if(rounds>=roundsPlayed)
+    {
+        if(computerScore>myScore)
+        {
+        document.getElementById("result").innerHTML=`Omg!You lost :( Computer wins..Computer score is ${computerScore} and your score is ${myScore}`
+        }
+        else if(computerScore<myScore){
+            document.getElementById("result").innerHTML=`Hurray!You win :)  Computer score is ${computerScore} and your score is ${myScore}`;
+        }
+        else{
+            document.getElementById("result").innerHTML=`Match ended in draw :|rock  Computer score is ${computerScore} and your score is ${myScore}`;
+        }
+    }
+     
+    } 
+
+
+
+    function WishtoContinue()
+    {
+        const asking=(confirm("Do you want to continue?"));
+        if(!asking)
+    {
+        document.getElementById("result").innerHTML= `Computer score is ${computerScore} and your score is ${myScore}`
+    }
+    
+    }
+
+
+    
+</script>
+    
+
+</html>
